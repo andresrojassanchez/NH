@@ -1,0 +1,22 @@
+# TODO
+# 1: parse the link file to find the nodes, the next node, the distance, and
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import itertools
+import networkx as nx
+import pylab
+
+
+
+DG = nx.DiGraph()
+cols = 'Origin Node, Destination Node, Link Distance, Allowable Next Node 1, Allowable Next Node 2'
+
+with open('/Users/andy/Downloads/link_test_file', 'r') as link_test_file:
+    for line in itertools.islice(link_test_file, 12, None):
+        slices = [line[2:14], line[18:30], line[72:81], line[83:95], line[98:110]]
+        DG.add_edge(slices[0], slices[1], distance = slices[3])
+        #print(slices[0], slices[1])
+        nx.draw(DG)
+
